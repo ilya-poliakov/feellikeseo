@@ -14,11 +14,12 @@ final class Database
 
 
     private function __construct(){
+        $connection = mysqli_connect(Config::$db_host, Config::$db_user, Config::$db_pass, Config::$db_name);
 
-        self::$connection = mysqli_connect(Config::$db_host, Config::$db_user, Config::$db_pass, Config::$db_name);
-        if(self::$connection === false) {
-            echo mysqli_connect_error();
-        }
+
+
+
+        self::$connection = $connection;
     }
 
     /**

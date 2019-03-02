@@ -3,3 +3,6 @@
 
 <a href="user/login">Login</a><br>
 <a href="user/register">Register</a><br>
+<a href="office/choose">Choose office</a><br>
+<a href="workers/hire">Hire workers</a><br>
+<a href="projects/bids">Choose projects</a><br>
