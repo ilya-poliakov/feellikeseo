@@ -7,12 +7,11 @@
  */
 require 'autoload.php';
 
+session_start();
+
 use Core\App;
 
 $app = new App();
-
-
-
 
 if(isset($_SERVER['REQUEST_URI'])){
     if($_SERVER['REQUEST_URI'] === '/') {
