@@ -6,21 +6,10 @@
  * Time: 09:19
  */
 namespace Controllers;
-
 use Core\App;
-use Core\Database;
 
-class UserController
+class UserController extends Controller
 {
-    public $user;
-    private $connection;
-    public function __construct()
-    {
-        $this->connection = Database::get_instance();
-//        if(isset $_SESSION['user']){
-//            $this->user =
-//        }
-    }
 
     public function login(){
         return App::view('login');
@@ -39,6 +28,8 @@ class UserController
         $errors = [];
         if (!(filter_var($email, FILTER_VALIDATE_EMAIL))){
             $errors['email'] =  "Email is not correct";
+            $errors['email_val'] = $email;
+
         }
         if(!ctype_alnum ($password) || strlen($password)<6 || strlen($password)>20){
             $errors['password'] =  "Password is not correct , must contain only numbers and English numbers 
@@ -47,9 +38,11 @@ class UserController
         $result = $this->connection->query("SELECT id FROM users WHERE email = '$email' ");
         if($result->num_rows && !isset($errors['email'])){
             $errors['email'] = 'user with such email already exists.....';
+            $errors['email_val'] = $email;
         }
         $result = $this->connection->query("SELECT id FROM users WHERE login = '$login' ");
         if($result->num_rows){
+            $errors['login_val'] = $login;
             $errors['login'] = 'user with such login already exists.....';
         }
         if(count($errors)){
@@ -74,6 +67,7 @@ class UserController
         $this->connection->query('SQL CODE');
         $result = $this->connection->query("SELECT id FROM users WHERE login = '$login' AND password = '$password'");
         if(!$result->num_rows){
+
             $errors['password'] = 'login/password incorrect';
         }
         if(count($errors)){
@@ -81,7 +75,12 @@ class UserController
         } else{
             $rows = $result->fetch_all();
             $_SESSION['current_user_id'] = $rows[0][0];
-            return App::view('index', $errors);
+            header('Location: /');
+            return App::view('index');
         }
+    }
+    public function logout(){
+        unset($_SESSION['current_user_id']);
+        header('Location: /');
     }
 }

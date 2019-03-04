@@ -3,15 +3,18 @@
 namespace Controllers;
 
 use Core\App;
+use Models\User;
 
-class IndexController
+class IndexController extends Controller
 {
-    function __construct()
-    {
 
-    }
     public function index()
     {
-        return App::view('index');
+        $args = [];
+        if(isset($_SESSION['current_user_id'])){
+            $user = new User($_SESSION['current_user_id']);
+            $args['user'] = $user;
+        }
+        return App::view('index', $args);
     }
 }

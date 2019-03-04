@@ -6,7 +6,6 @@
  * Time: 14:53
  */
 
-var_dump($variables);
 
 ?>
 <form method="post" action="projects/bid"></form>

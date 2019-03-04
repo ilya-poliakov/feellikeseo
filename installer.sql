@@ -17,3 +17,25 @@ CREATE TABLE IF NOT EXISTS `games` (
   UNIQUE (`user_id`))
   ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `workers` (
+ `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ `user_id` INT(11) NOT NULL,
+ `name` VARCHAR(60) NOT NULL ,
+ `level` VARCHAR(60) NOT NULL ,
+ `job` VARCHAR(60) NOT NULL ,
+ `sex` VARCHAR(60) NOT NULL ,
+ `salary` INT(11) NOT NULL ,
+ `power` INT(11) NOT NULL DEFAULT 1,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `offices` (
+ `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ `user_id` INT(11) NOT NULL,
+ `name` VARCHAR(60) NOT NULL ,
+ `capacity` INT(6) NOT NULL ,
+ `comfort` INT(3) NOT NULL ,
+ `rent` INT(11) NOT NULL ,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB;
+

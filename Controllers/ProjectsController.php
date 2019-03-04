@@ -10,23 +10,14 @@ namespace Controllers;
 
 
 use Core\App;
-use Core\Database;
 
-class ProjectsController
+class ProjectsController extends Controller
 {
     public $user;
-    private $connection;
-    public function __construct()
-    {
-        $this->connection = Database::get_instance();
-//        if(isset $_SESSION['user']){
-//            $this->user =
-//        }
-    }
 
     public function bids(){
         $porjects = $this->generate();
-        return App::view('hire', $porjects);
+        return App::view('bids', $porjects);
     }
 
     public function generate()

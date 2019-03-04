@@ -6,7 +6,7 @@
  * Time: 09:21
  */
 require 'autoload.php';
-
+require_once 'Controllers/Controller.php';
 session_start();
 
 use Core\App;
@@ -28,6 +28,7 @@ switch (App::is_home($server))
 {
 
     case true:
+            require_once 'Models/User.php';
             require_once 'Controllers/IndexController.php';
             $controller = new Controllers\IndexController();
             print $controller->index();
