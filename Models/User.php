@@ -7,7 +7,6 @@
  */
 namespace Models;
 
-use Core\App;
 use Core\Database;
 
 class User
@@ -28,4 +27,12 @@ class User
         $this->login = $row['login'];
 
     }
+
+    public function getGame()
+    {
+        $game = new Game($this->id);
+
+    }
+
+
 }

@@ -39,3 +39,19 @@ CREATE TABLE IF NOT EXISTS `offices` (
   PRIMARY KEY (`id`))
   ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS `projects` (
+ `id` INT(11) NOT NULL AUTO_INCREMENT ,
+ `user_id` INT(11) NOT NULL,
+ `title` VARCHAR(60) NOT NULL ,
+ `size` INT(3) NOT NULL ,
+ `duration` INT(3) NOT NULL ,
+ `award` INT(6) NOT NULL ,
+  PRIMARY KEY (`id`))
+  ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `worker_project` (
+ `user_id` INT(11) NOT NULL,
+ `worker_id` INT(11) NOT NULL,
+ `project_id` INT(11) NOT NULL)
+  ENGINE = InnoDB;

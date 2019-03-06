@@ -23,13 +23,12 @@ if(isset($_SERVER['REQUEST_URI'])){
 }else{
     $server = '/';
 }
-
 switch (App::is_home($server))
 {
 
     case true:
-            require_once 'Models/User.php';
             require_once 'Controllers/IndexController.php';
+            require_once 'Models/User.php';
             $controller = new Controllers\IndexController();
             print $controller->index();
             break;
@@ -46,12 +45,14 @@ switch (App::is_home($server))
         $controller_exists = __DIR__.'/Controllers/'.$app->controller.'Controller.php';
         if (file_exists($controller_exists))
         {
-
+            $model = ucfirst($app->model);
+            $modelPath = __DIR__.'/Models/'.$model.'.php';
             $controllerPath = __DIR__.'/Controllers/'.ucfirst($app->controller).'Controller.php';
             //require_once __DIR__.'/Models/'.$app->model.'Model.php';
+            require_once 'Models/User.php';
+            if(file_exists($modelPath)) require_once $modelPath;
             require_once $controllerPath;
 
-            //$model = ucfirst($app->model).'Model';
             $controller = 'Controllers\\'.ucfirst($app->controller).'Controller';
             //$Model = new $model;
             $Controller = new $controller;
